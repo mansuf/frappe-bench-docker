@@ -29,8 +29,14 @@ except KeyError:
     raise Exception(".env file is not initialized")
 
 def main():
+    # Init mariadb
+    subprocess.run(["python3", "mysql-init.py"])
+
     # Start mariadb
     subprocess.run(["service", "mariadb", "start"])
+
+    # Start redis-server
+    subprocess.run(["service", "redis-server", "start"])
 
     # Create mysql user
     # mysql -u <user> -p -e 'select * from schema.table'

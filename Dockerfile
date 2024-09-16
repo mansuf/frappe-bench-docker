@@ -7,8 +7,6 @@ WORKDIR /app
 RUN apt update
 RUN apt install cron python3-venv supervisor python3-pip redis-server mariadb-server mariadb-client curl git -y
 RUN pip install frappe-bench python-dotenv pexpect --no-input
-RUN service mariadb start
-RUN python3 mysql-init.py
 
 # To prevent permission denied
 RUN useradd -ms /bin/bash frappe-bench -u 1000
@@ -31,5 +29,3 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | b
 # Verify NodeJS and NPM is installed
 RUN npm --version
 RUN node --version
-
-USER frappe-bench

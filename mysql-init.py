@@ -69,6 +69,11 @@ key_envs = [
 
 
 def main():
+    # Initialize mariadb data
+    # mysql_install_db
+    print(pexpect.run("mysql_install_db"))
+    print(pexpect.run("chown -R mysql:mysql /var/lib/mysql "))
+
     # Start mariadb service
     subprocess.run(["service", "mariadb", "start"])
 
